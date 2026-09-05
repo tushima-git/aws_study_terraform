@@ -12,7 +12,7 @@
 ## 3. 構築される主要リソース (Resources)
 このテンプレートによって、以下のAWSリソースが構築されます
 
-[詳細はこちら(CloudFormationと同じ環境です)](https://github.com/tushima-git/aws_study_cloudformation/#L15-L33)
+[詳細はこちら(CloudFormationと同じ環境です)](http://github.com/tushima-git/aws_study_cloudformation/blob/main/README.md/#L15-L33)
 
 ## 4. 前提条件 (Prerequisites)
 Terraformでの作成を実行する前に、以下の準備が必要です。
@@ -42,7 +42,7 @@ aws s3api put-public-access-block \
     --public-access-block-configuration "BlockPublicAcls=true,IgnorePublicAcls=true,BlockPublicPolicy=true,RestrictPublicBuckets=true"
 ```
 
-[こちらはCloudFormationで作成したとき同様](https://github.com/tushima-git/aws_study_cloudformation/L33-L35)
+[こちらはCloudFormationで作成したとき同様](http://github.com/tushima-git/aws_study_cloudformation/blob/main/README.md/L33-L35)
 
 ## 4. アプリケーション動作手順
-[詳細はこちら](https://github.com/tushima-git/aws_study_cloudformation/L51-L99)
+[詳細はこちら](http://github.com/tushima-git/aws_study_cloudformation/blob/main/README.md/L51-L99)
