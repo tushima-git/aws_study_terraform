@@ -1,0 +1,2 @@
+# aws_study_terraform
+ Terraform でAWSのSpringBootアプリのインフラ環境を構築します
