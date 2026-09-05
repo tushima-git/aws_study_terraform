@@ -21,8 +21,7 @@ Terraformでの作成を実行する前に、以下の準備が必要です。
 * 今回は、AMTC(IAMアクセスキーとシークレットキー)をセキュリティ上の理由から使用しない方針で作成します。
 * 管理者がAWS IAM Identity Centerの導入し、シングルサインオン( SSO )で複数AWSアカウントを管理し、TerraformにSSO認証を受けたユーザーでログインし使えるようにする設定でTerraformを使えるようにしています。
 * こちらは、会社や部署の管理者アカウントから、自分の会社や部署から受け取ったAWSアカウントでログインして使う想定です。（今回は学習用のため管理アカウントもこちらで用意し、管理アカウントから作成したユーザーに`AdministratorAccess`権限を与え、シングルサインオン( SSO )でログインしてもらいます。）
-参考記事↓↓↓
-https://qiita.com/kooohei/items/5230f34e6f1fb9529bd7 
+[参考記事](https://qiita.com/kooohei/items/5230f34e6f1fb9529bd7)
 
 * AWS CLIでのSSOの設定
 [こちらのサイト](https://zenn.dev/fez_tech/articles/fec83b79c44ff1)を参考に、AWS CLI環境でSSOログインの設定を行なってください。
