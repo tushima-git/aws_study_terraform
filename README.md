@@ -4,7 +4,7 @@
 ## 1. システム構成図 (Architecture)
 ![Architecture Diagram](./images/)
 
-## 3. 使用するバージョンと実行環境
+## 2. 使用するバージョンと実行環境
 * Terraform `v1.16.0 on darwin_arm64`
 * AWS CLI `aws-cli/2.36.25 Python/3.14.7 Darwin/25.6.0 source/arm64`
 * aws provider `v5.100.0`
@@ -31,6 +31,9 @@ Terraformでの作成を実行する前に、以下の準備が必要です。
   - 排他ロックを有効化 ( `backend.tf`で、`use_lockfile=true`にて、設定)
 
 ```
+# バケットを作成
+aws s3 mb s3://aws-study-tf-state-management
+
 # バージョニング有効化
 aws s3api put-bucket-versioning \
     --bucket aws-study-tf-state-management \
