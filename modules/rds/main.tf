@@ -78,20 +78,20 @@ resource "aws_db_instance" "rds_db_server" {
   max_allocated_storage = var.max_allocated_storage
   engine                      = "mysql"
   engine_version              = "8.0"
-  instance_class              = var.db_instance_class
-  db_name                     = var.db_name
-  username                    = var.username
+  instance_class              = "${var.db_instance_class}"
+  db_name                     = "${var.db_name}"
+  username                    = "${var.username}"
   manage_master_user_password = true #secretsmanagerによるパスワード管理
   port = "3306"
   vpc_security_group_ids = var.security_group_id
   db_subnet_group_name   = aws_db_subnet_group.rds_database_subnet_group.name
   
   # デフォルトはマルチAZ有効
-  multi_az = var.multi_az
+  multi_az = "${var.multi_az}"
   # デフォルトはスナップショットを残さず削除
-  skip_final_snapshot = var.skip_final_snapshot
+  skip_final_snapshot = "${var.skip_final_snapshot}"
   # デフォルトは削除保護無効
-  deletion_protection = var.deletion_protection
+  deletion_protection = "${var.deletion_protection}"
 
   # RDSのパラメータグループ
   parameter_group_name   = aws_db_parameter_group.db_configure_parameter.name
