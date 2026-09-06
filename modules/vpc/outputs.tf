@@ -6,7 +6,7 @@ output "vpc_id" {
 
 # パブリックサブネットのID
 output "public_subnet_ids" {
-  description = "A list of all public subnet IDs"
+  description = "The list of all public subnet IDs"
   value       = [
     aws_subnet.public_subnet_1a.id,
     aws_subnet.public_subnet_1c.id
@@ -15,7 +15,7 @@ output "public_subnet_ids" {
 
 # プライベートサブネットのID
 output "private_subnet_ids" {
-  description = "A list of all private subnet IDs"
+  description = "The list of all private subnet IDs"
   value       = [
     aws_subnet.private_subnet_1a.id,
     aws_subnet.private_subnet_1c.id
