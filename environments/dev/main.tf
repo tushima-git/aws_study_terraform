@@ -34,4 +34,15 @@ module "security_group" {
 
 module "ec2_server" {
   source = "../../modules/ec2"
+
+  infra_name   = "AWS-Study-Terraform"
+  project_name = "SpringBoot-sample-app"
+  current_env  = "dev"
+
+  vpc_id            = module.network_vpc.vpc_id
+  subnet_id         = module.network_vpc.public_subnet_ids[0]
+  security_group_id = [module.security_group.security_groups_ids[1]]
+
+  ec2_instance_type = "t3.micro"
+  disable_api_termination = "false"
 }
