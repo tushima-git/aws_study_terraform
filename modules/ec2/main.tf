@@ -14,6 +14,11 @@ resource "aws_iam_role" "ssm_role" {
       }
     ]
   })
+  tags = {
+    Name = "${var.infra_name}-${var.current_env}-ssm-role"
+    Project = "${var.project_name}"
+    Environment = "${var.current_env}"
+  }
 }
 # AmazonSSMManagedInstanceCoreとアタッチ
 resource "aws_iam_role_policy_attachment" "ssm_policy_attach" {
@@ -21,7 +26,32 @@ resource "aws_iam_role_policy_attachment" "ssm_policy_attach" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
 }
 # インスタンスプロファイルの作成
+resource "aws_iam_instance_profile" "ssm_profile" {
+  name = "ec2-ssm-instance-profile"
+  role = aws_iam_role.ssm_role.name
+  tags = {
+    Name = "${var.infra_name}-${var.current_env}-instance-profile"
+    Environment = "${var.current_env}"
+  }
+}
 
 # SessionManagerで接続できるようにEC2を作成
+# AWS Systems Managerのパブリックパラメータから最新のAMI IDを取得
+data "aws_ssm_parameter" "amzn2023" {
+  name = "/aws/service/ami-amazon-linux-latest/al2023-ami-kernel-default-x86_64"
+}
 
+resource "aws_instance" "name" {
+  ami = data.aws_ssm_parameter.amzn2023.value
+  instance_type = "${var.ec2_instance_type}"
+  subnet_id = var.subnet_id
+  vpc_security_group_ids = var.security_group_id
 
+  disable_api_termination = "${var.disable_api_termination}"
+  iam_instance_profile = aws_iam_instance_profile.ssm_profile.name
+  tags = {
+    Name = "${var.infra_name}-${var.current_env}-ec2-app-server"
+    Project = "${var.project_name}"
+    Environment = "${var.current_env}"
+  }
+}
