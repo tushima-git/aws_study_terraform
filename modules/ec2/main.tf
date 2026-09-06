@@ -31,6 +31,7 @@ resource "aws_iam_instance_profile" "ssm_profile" {
   role = aws_iam_role.ssm_role.name
   tags = {
     Name = "${var.infra_name}-${var.current_env}-instance-profile"
+    Project = "${var.project_name}"
     Environment = "${var.current_env}"
   }
 }
