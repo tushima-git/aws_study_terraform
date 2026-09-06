@@ -64,7 +64,7 @@ resource "aws_subnet" "private_subnet_1a" {
 resource "aws_subnet" "private_subnet_1c" {
   vpc_id = aws_vpc.main_vpc.id
   cidr_block = "${var.private_subnet_1c_cidr_block}"
-  availability_zone = "${var.az_1a}"
+  availability_zone = "${var.az_1c}"
   tags = {
     Name = "${var.infra_name}-${var.current_env}-private_subnet_1c"   # 文字列内に変数を埋め込む場合はこの書き方（v0.11形式）
     Project = "${var.project_name}"
