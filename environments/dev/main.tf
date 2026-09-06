@@ -39,9 +39,19 @@ module "ec2_server" {
   project_name = "SpringBoot-sample-app"
   current_env  = "dev"
 
-  subnet_id = module.network_vpc.public_subnet_ids[0]
+  subnet_id         = module.network_vpc.public_subnet_ids[0]
   security_group_id = [module.security_group.security_groups_ids[1]]
 
-  ec2_instance_type = "t3.micro"
+  ec2_instance_type       = "t3.micro"
   disable_api_termination = "false"
+}
+
+module "rds_DBserver" {
+  source = "../../modules/rds"
+
+  current_env          = "dev"
+
+  # サブネットグループの設定
+  sb_group_private_1a = module.network_vpc.private_subnet_ids[0]
+  sb_group_private_1c = module.network_vpc.private_subnet_ids[1]
 }
