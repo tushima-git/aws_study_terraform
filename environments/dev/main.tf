@@ -49,9 +49,20 @@ module "ec2_server" {
 module "rds_DBserver" {
   source = "../../modules/rds"
 
-  current_env          = "dev"
+  current_env = "dev"
 
   # サブネットグループの設定
   sb_group_private_1a = module.network_vpc.private_subnet_ids[0]
   sb_group_private_1c = module.network_vpc.private_subnet_ids[1]
+
+  allocated_storage = 20
+  max_allocated_storage = 100
+  db_instance_class = "db.m7g.large"
+  db_name = "awsstudy"
+  username = "root"
+  multi_az = true
+
+  skip_final_snapshot = true
+  deletion_protection = false
+  security_group_id = [module.security_group.security_groups_ids[2]]
 }
