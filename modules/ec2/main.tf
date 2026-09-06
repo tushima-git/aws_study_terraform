@@ -42,7 +42,7 @@ data "aws_ssm_parameter" "amzn2023" {
   name = "/aws/service/ami-amazon-linux-latest/al2023-ami-kernel-default-x86_64"
 }
 
-resource "aws_instance" "name" {
+resource "aws_instance" "ec2_app_server" {
   ami = data.aws_ssm_parameter.amzn2023.value
   instance_type = "${var.ec2_instance_type}"
   subnet_id = var.subnet_id
