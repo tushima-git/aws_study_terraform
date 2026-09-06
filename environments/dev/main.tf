@@ -31,3 +31,7 @@ module "security_group" {
   current_env  = "dev"
   vpc_id       = module.network_vpc.vpc_id
 }
+
+module "ec2_server" {
+  source = "../../modules/ec2"
+}
