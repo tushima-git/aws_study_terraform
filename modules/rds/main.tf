@@ -109,7 +109,7 @@ resource "aws_db_instance" "rds_db_server" {
 ]
 
   tags = {
-    Name        = "${var.infra_name}-${var.current_env}-rds-db-subnet-group"
+    Name        = "${var.infra_name}-${var.current_env}-rds-db-server"
     Project     = "${var.project_name}"
     Environment = "${var.current_env}"
   }
