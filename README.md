@@ -15,6 +15,59 @@
 
 [詳細はこちら(CloudFormationと同じ環境です)](https://github.com/tushima-git/aws_study_cloudformation/blob/main/README.md#2-%E6%A7%8B%E7%AF%89%E3%81%95%E3%82%8C%E3%82%8B%E4%B8%BB%E8%A6%81%E3%83%AA%E3%82%BD%E3%83%BC%E3%82%B9-resources)
 
+**ディレクトリ構成**
+```
+.
+├── README.md
+├── environments
+│   ├── dev # 今回構築した環境 (開発環境) 場合に応じて、stage・prod環境と使い分けてください
+│   │   ├── backend.tf
+│   │   ├── main.tf
+│   │   ├── outputs.tf
+│   │   ├── terraform.tfvars
+│   │   └── variables.tf
+│   ├── prod
+│   │   ├── backend.tf
+│   │   ├── main.tf
+│   │   ├── outputs.tf
+│   │   ├── terraform.tfvars
+│   │   └── variables.tf
+│   └── stage
+│       ├── backend.tf
+│       ├── main.tf
+│       ├── outputs.tf
+│       ├── terraform.tfvars
+│       └── variables.tf
+└── modules
+    ├── alb
+    │   ├── main.tf
+    │   ├── outputs.tf
+    │   └── variables.tf
+    ├── ec2
+    │   ├── main.tf
+    │   ├── outputs.tf
+    │   └── variables.tf
+    ├── monitoring
+    │   ├── main.tf
+    │   ├── outputs.tf
+    │   └── variables.tf
+    ├── rds
+    │   ├── main.tf
+    │   ├── outputs.tf
+    │   └── variables.tf
+    ├── security_group
+    │   ├── main.tf
+    │   ├── outputs.tf
+    │   └── variables.tf
+    └── vpc
+        ├── main.tf
+        ├── outputs.tf
+        └── variables.tf
+
+12 directories, 34 files
+
+```
+
 ## 4. 前提条件 (Prerequisites)
 Terraformでの作成を実行する前に、以下の準備が必要です。
 
