@@ -71,9 +71,6 @@ resource "aws_db_parameter_group" "db_configure_parameter" {
   }
 }
 
-data "aws_caller_identity" "current" {}
-data "aws_region" "current" {}
-
 # RDSの作成
 resource "aws_db_instance" "rds_db_server" {
   storage_type                = "gp3"
@@ -101,13 +98,11 @@ resource "aws_db_instance" "rds_db_server" {
   # バックアップ時間帯を指定（UTCで指定する必要がある点に注意）JTCの9時間前に設定
   backup_window        = "18:00-18:30"  # JTCなら "3:00-3:30"
   performance_insights_enabled    = "${var.performance_insights_enabled}"
-  performance_insights_kms_key_id = "arn:aws:kms:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:alias/aws/rds"
 
   #（メジャーバージョンアップを許可する場合の許可）
   allow_major_version_upgrade = "${var.allow_major_version_upgrade}"
   # 即時反映を許可
   apply_immediately = true
-
 
   # RDSのパラメータグループ
   parameter_group_name = aws_db_parameter_group.db_configure_parameter.name
