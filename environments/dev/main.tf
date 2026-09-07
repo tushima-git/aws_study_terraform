@@ -89,3 +89,14 @@ module "ALB_loadbalancer" {
   attach_alb_subnet_1c       = module.network_vpc.public_subnet_ids[1]
   enable_deletion_protection = false
 }
+
+module "Monitoring" {
+  source = "../../modules/monitoring"
+
+  infra_name   = "AWS-Study-Terraform"
+  project_name = "SpringBoot-sample-app"
+  current_env  = "dev"
+
+  ec2_app_server_id = module.ec2_server.ec2_instance_id
+  alb_arn           = module.ALB_loadbalancer.alb_arn
+}
