@@ -2,7 +2,7 @@
  Terraform でAWSのSpringBootアプリのインフラ環境を構築します
 
 ## 1. システム構成図 (Architecture)
-![Architecture Diagram](./images/)
+![Architecture Diagram](./images/aws_architecture_tf.svg)
 
 ## 2. 使用するバージョンと実行環境
 * Terraform `v1.16.0 on darwin_arm64`
