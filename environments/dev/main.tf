@@ -40,7 +40,7 @@ module "ec2_server" {
   security_group_id = [module.security_group.security_groups_ids[1]]
 
   ec2_instance_type       = "t3.micro"
-  disable_api_termination = "false"
+  disable_api_termination = false
 }
 
 module "rds_DBserver" {
