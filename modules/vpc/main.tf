@@ -3,7 +3,7 @@
 # ----------
 # VPCを作る
 resource "aws_vpc" "main_vpc" {
-  cidr_block           = var.vpc_cidr_block   # v0.12以降の書き方
+  cidr_block           = var.vpc_cidr_block
   enable_dns_support   = true
   enable_dns_hostnames = true
   tags = {
@@ -28,7 +28,7 @@ resource "aws_internet_gateway" "igw" {
 # サブネットの作成
 resource "aws_subnet" "public_subnet_1a" {
   vpc_id = aws_vpc.main_vpc.id
-  cidr_block = "${var.public_subnet_1a_cidr_block}"
+  cidr_block = var.public_subnet_1a_cidr_block
   availability_zone = "${var.az_1a}"
   map_public_ip_on_launch = true
   tags = {
@@ -40,7 +40,7 @@ resource "aws_subnet" "public_subnet_1a" {
 
 resource "aws_subnet" "public_subnet_1c" {
   vpc_id = aws_vpc.main_vpc.id
-  cidr_block = "${var.public_subnet_1c_cidr_block}"
+  cidr_block = var.public_subnet_1c_cidr_block
   availability_zone = "${var.az_1c}"
   map_public_ip_on_launch = true
   tags = {
@@ -52,7 +52,7 @@ resource "aws_subnet" "public_subnet_1c" {
 
 resource "aws_subnet" "private_subnet_1a" {
   vpc_id = aws_vpc.main_vpc.id
-  cidr_block = "${var.private_subnet_1a_cidr_block}"
+  cidr_block = var.private_subnet_1a_cidr_block
   availability_zone = "${var.az_1a}"
   tags = {
     Name = "${var.infra_name}-${var.current_env}-private_subnet_1a"   # 文字列内に変数を埋め込む場合はこの書き方（v0.11形式）
@@ -63,7 +63,7 @@ resource "aws_subnet" "private_subnet_1a" {
 
 resource "aws_subnet" "private_subnet_1c" {
   vpc_id = aws_vpc.main_vpc.id
-  cidr_block = "${var.private_subnet_1c_cidr_block}"
+  cidr_block = var.private_subnet_1c_cidr_block
   availability_zone = "${var.az_1c}"
   tags = {
     Name = "${var.infra_name}-${var.current_env}-private_subnet_1c"   # 文字列内に変数を埋め込む場合はこの書き方（v0.11形式）
@@ -142,5 +142,3 @@ resource "aws_vpc_endpoint" "s3_gateway" {
     aws_route_table.private_route_table_1c.id
   ]
 }
-
-# VPCとサブネットIDを外に出力

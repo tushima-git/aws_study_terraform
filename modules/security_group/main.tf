@@ -37,8 +37,8 @@ resource "aws_security_group" "ec2_sg" {
   description = "This is ec2 security group"
 
   ingress {
-    from_port   = "${var.SpringBoot_app_port}"
-    to_port     = "${var.SpringBoot_app_port}"
+    from_port   = var.SpringBoot_app_port
+    to_port     = var.SpringBoot_app_port
     protocol    = "tcp"
     security_groups = [ aws_security_group.alb_sg.id ]
   }

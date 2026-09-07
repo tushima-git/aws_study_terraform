@@ -19,6 +19,8 @@ variable "tg_name" {
 
 # ポート番号
 variable "SpringBoot_app_port" {
+  type = number
+  default = 8080
 }
 
 # ヘルスチェックの設定

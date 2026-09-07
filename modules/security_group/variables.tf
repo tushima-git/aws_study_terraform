@@ -14,6 +14,7 @@ variable "vpc_id" {
 }
 
 variable "SpringBoot_app_port" {
+  type = number
   description = "Java SpringBoot Application Port"
-  default = "8080"
+  default = 8080
 }

@@ -1,7 +1,7 @@
 # ターゲットグループの作成
 resource "aws_lb_target_group" "alb_tg" {
   name = "${var.tg_name}"
-  port = "${var.SpringBoot_app_port}"
+  port = var.SpringBoot_app_port
   protocol = "HTTP"
   vpc_id = "${var.vpc_id}"
   target_type = "instance"
@@ -10,10 +10,10 @@ resource "aws_lb_target_group" "alb_tg" {
     path = "/"
     port = "traffic-port"
     protocol = "HTTP"
-    healthy_threshold = "${var.healthy_threshold}"
-    unhealthy_threshold = "${var.unhealthy_threshold}"
-    timeout = "${var.timeout}"
-    interval = "${var.interval}"
+    healthy_threshold = var.healthy_threshold
+    unhealthy_threshold = var.unhealthy_threshold
+    timeout = var.timeout
+    interval = var.interval
     matcher = "200,301"
   }
 
@@ -27,7 +27,7 @@ resource "aws_lb_target_group" "alb_tg" {
 resource "aws_lb_target_group_attachment" "add_configure_ec2" {
   target_group_arn = aws_lb_target_group.alb_tg.arn
   target_id = var.ec2_instance_id
-  port = "${var.SpringBoot_app_port}"
+  port = var.SpringBoot_app_port
 }
 
 
@@ -43,7 +43,7 @@ resource "aws_lb" "alb_load_balancer" {
     var.attach_alb_subnet_1c
   ]
 
-  enable_deletion_protection = "${var.enable_deletion_protection}"
+  enable_deletion_protection = var.enable_deletion_protection
 
   tags = {
     Name = "${var.infra_name}-${var.current_env}-alb"

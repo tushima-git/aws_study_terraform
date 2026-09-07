@@ -48,7 +48,7 @@ resource "aws_instance" "ec2_app_server" {
   subnet_id = var.subnet_id
   vpc_security_group_ids = var.security_group_id
 
-  disable_api_termination = "${var.disable_api_termination}"
+  disable_api_termination = var.disable_api_termination
   iam_instance_profile = aws_iam_instance_profile.ssm_profile.name
   tags = {
     Name = "${var.infra_name}-${var.current_env}-ec2-app-server"

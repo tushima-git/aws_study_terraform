@@ -35,9 +35,11 @@ variable "db_instance_class" {
 }
 
 variable "db_name" {
+  type = string
 }
 
 variable "username" {
+  type = string
   default = "root"
 }
 
@@ -63,6 +65,7 @@ variable "backup_retention_period" {
 
   # バックアップ時間帯を指定（UTCで指定する必要がある点に注意）
 variable "backup_window" {
+  type = string
   default = "18:00-18:30"
 }
 

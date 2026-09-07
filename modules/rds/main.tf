@@ -51,17 +51,17 @@ resource "aws_db_parameter_group" "db_configure_parameter" {
 
   parameter {
     name  = "general_log"
-    value = "1" # 全般ログを有効化
+    value = 1 # 全般ログを有効化
   }
 
   parameter {
     name  = "slow_query_log"
-    value = "1" # スロークエリログを有効化
+    value = 1 # スロークエリログを有効化
   }
 
   parameter {
     name  = "long_query_time"
-    value = "2" # 例：２秒以上かかったクエリを記録
+    value = 2 # 例：２秒以上かかったクエリを記録
   }
 
   # ログの出力先を「FILE」に指定（CloudWatch Logs連携に必須）
@@ -78,12 +78,12 @@ resource "aws_db_instance" "rds_db_server" {
   max_allocated_storage       = var.max_allocated_storage
   engine                      = "mysql"
   engine_version              = "8.4.8"
-  instance_class              = var.db_instance_class
+  instance_class              = "${var.db_instance_class}"
   identifier                  = "tf-rds-db-server"
-  db_name                     = var.db_name
-  username                    = var.username
+  db_name                     = "${var.db_name}"
+  username                    = "${var.username}"
   manage_master_user_password = true #secretsmanagerによるパスワード管理
-  port                        = "3306"
+  port                        = 3306
   vpc_security_group_ids      = var.security_group_id
   db_subnet_group_name        = aws_db_subnet_group.rds_database_subnet_group.name
 
@@ -94,13 +94,13 @@ resource "aws_db_instance" "rds_db_server" {
   # デフォルトは削除保護無効
   deletion_protection = var.deletion_protection
   # 自動バックアップを有効化（1日〜35日で指定）
-  backup_retention_period = "${var.backup_retention_period}"
+  backup_retention_period = var.backup_retention_period
   # バックアップ時間帯を指定（UTCで指定する必要がある点に注意）JTCの9時間前に設定
   backup_window        = "18:00-18:30"  # JTCなら "3:00-3:30"
-  performance_insights_enabled    = "${var.performance_insights_enabled}"
+  performance_insights_enabled    = var.performance_insights_enabled
 
   #（メジャーバージョンアップを許可する場合の許可）
-  allow_major_version_upgrade = "${var.allow_major_version_upgrade}"
+  allow_major_version_upgrade = var.allow_major_version_upgrade
   # 即時反映を許可
   apply_immediately = true
 
