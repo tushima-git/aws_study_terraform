@@ -82,7 +82,7 @@ module "ALB_loadbalancer" {
 
   tg_name             = "alb-target-group"
   SpringBoot_app_port = 8080
-
+  ec2_instance_id = module.ec2_server.ec2_instance_id
   alb_name                   = "alb-load-balancer"
   security_group_id          = [module.security_group.security_groups_ids[0]]
   attach_alb_subnet_1a       = module.network_vpc.public_subnet_ids[0]

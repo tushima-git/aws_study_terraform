@@ -24,6 +24,12 @@ resource "aws_lb_target_group" "alb_tg" {
   }
 }
 
+resource "aws_lb_target_group_attachment" "add_configure_ec2" {
+  target_group_arn = aws_lb_target_group.alb_tg.arn
+  target_id = var.ec2_instance_id
+  port = 80
+}
+
 
 # ALBの作成
 resource "aws_lb" "alb_load_balancer" {

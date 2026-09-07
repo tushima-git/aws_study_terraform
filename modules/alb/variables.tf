@@ -43,6 +43,10 @@ variable "interval" {
   default = 30
 }
 
+variable ec2_instance_id {
+  
+}
+
 # ここからALBの設定
 variable "alb_name" {
 }
