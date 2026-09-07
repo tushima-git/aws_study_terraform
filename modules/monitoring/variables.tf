@@ -1,10 +1,13 @@
 variable "infra_name" {
+  default = "AWS-Study-Terraform"
 }
 
 variable "project_name" {
+  default = "SpringBoot-sample-app"
 }
 
 variable "current_env" {
+
 }
 
 variable "ec2_app_server_id" {

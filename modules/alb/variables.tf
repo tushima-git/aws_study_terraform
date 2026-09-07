@@ -1,10 +1,13 @@
 variable "infra_name" {
+  default = "AWS-Study-Terraform"
 }
 
 variable "project_name" {
+  default = "SpringBoot-sample-app"
 }
 
 variable "current_env" {
+
 }
 
 variable "vpc_id" {
@@ -44,7 +47,7 @@ variable "interval" {
 }
 
 variable ec2_instance_id {
-  
+
 }
 
 # ここからALBの設定

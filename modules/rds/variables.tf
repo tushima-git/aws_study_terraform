@@ -17,13 +17,13 @@ variable "sb_group_private_1c" {
 
 # ストレージの割り当て
 variable "allocated_storage" {
-  type = number
+  type    = number
   default = 20
 }
 
 # ストレージの自動スケーリングの最大値
 variable "max_allocated_storage" {
-  type = number
+  type    = number
   default = 100
 }
 
@@ -42,19 +42,36 @@ variable "username" {
 }
 
 variable "multi_az" {
-  type = bool
+  type    = bool
   default = true
 }
 
 variable "skip_final_snapshot" {
-  type = bool
+  type    = bool
   default = true
 }
 variable "deletion_protection" {
-  type = bool
+  type    = bool
   default = false
 }
 
+  # 自動バックアップを有効化（1日〜35日で指定）
+variable "backup_retention_period" {
+  type = number
+  default = 0
+}
 
+  # バックアップ時間帯を指定（UTCで指定する必要がある点に注意）
+variable "backup_window" {
+  default = "18:00-18:30"
+}
 
-
+variable "performance_insights_enabled" {
+  type = bool
+  default = true
+}
+#（メジャーバージョンアップを許可する場合の許可）
+variable "allow_major_version_upgrade" {
+  type = bool
+  default = false
+}

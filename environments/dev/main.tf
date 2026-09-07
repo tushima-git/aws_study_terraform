@@ -25,10 +25,8 @@ module "network_vpc" {
 
 module "security_group" {
   source = "../../modules/security_group"
-
-  infra_name   = "AWS-Study-Terraform"
-  project_name = "SpringBoot-sample-app"
   current_env  = "dev"
+
   vpc_id       = module.network_vpc.vpc_id
   # ec2のsgポート番号
   SpringBoot_app_port = 8080
@@ -36,9 +34,6 @@ module "security_group" {
 
 module "ec2_server" {
   source = "../../modules/ec2"
-
-  infra_name   = "AWS-Study-Terraform"
-  project_name = "SpringBoot-sample-app"
   current_env  = "dev"
 
   subnet_id         = module.network_vpc.public_subnet_ids[0]
@@ -50,9 +45,6 @@ module "ec2_server" {
 
 module "rds_DBserver" {
   source = "../../modules/rds"
-
-  infra_name   = "AWS-Study-Terraform"
-  project_name = "SpringBoot-sample-app"
   current_env  = "dev"
 
   # サブネットグループの設定
@@ -68,18 +60,16 @@ module "rds_DBserver" {
 
   skip_final_snapshot = true
   deletion_protection = false
+  backup_retention_period = 0
+  performance_insights_enabled = true
   security_group_id   = [module.security_group.security_groups_ids[2]]
 }
 
 module "ALB_loadbalancer" {
   source = "../../modules/alb"
-
-  infra_name   = "AWS-Study-Terraform"
-  project_name = "SpringBoot-sample-app"
   current_env  = "dev"
 
   vpc_id = module.network_vpc.vpc_id
-
   tg_name             = "alb-target-group"
   SpringBoot_app_port = 8080
   ec2_instance_id = module.ec2_server.ec2_instance_id
@@ -92,9 +82,6 @@ module "ALB_loadbalancer" {
 
 module "Monitoring" {
   source = "../../modules/monitoring"
-
-  infra_name   = "AWS-Study-Terraform"
-  project_name = "SpringBoot-sample-app"
   current_env  = "dev"
 
   ec2_app_server_id = module.ec2_server.ec2_instance_id
