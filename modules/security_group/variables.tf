@@ -11,6 +11,8 @@ variable "current_env" {
 }
 
 variable "vpc_id" {
+  type = string
+  description = "The VPC ID"
 }
 
 variable "SpringBoot_app_port" {

@@ -11,9 +11,13 @@ variable "current_env" {
 }
 
 variable "subnet_id" {
+  type = string
+  description = "This is the subnet_id"
 }
 
 variable "security_group_id" {
+  type = list(string)
+  description = "The EC2 Security Group ID"
 }
 
 variable "ec2_instance_type" {

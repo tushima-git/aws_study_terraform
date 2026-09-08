@@ -11,6 +11,8 @@ variable "current_env" {
 }
 
 variable "vpc_id" {
+  type = string
+  description = "The VPC ID"
 }
 
 # ターゲットグループ名の設定
@@ -49,14 +51,18 @@ variable "interval" {
 }
 
 variable ec2_instance_id {
-
+  type = string
+  description = "The EC2 Instance ID"
 }
 
 # ここからALBの設定
 variable "alb_name" {
+  type = string
 }
 # ALBのSecurityGroupの設定
 variable "security_group_id" {
+  type = list(string)
+  description = "The ALB Security Group"
 }
 
 # ALBのサブネットの設定

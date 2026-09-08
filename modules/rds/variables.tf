@@ -10,9 +10,13 @@ variable "project_name" {
 variable "current_env" {}
 
 variable "sb_group_private_1a" {
+  type = string
+  description = "Add RDS Subnet Group private subnet ap-northeast-1a"
 }
 
 variable "sb_group_private_1c" {
+  type = string
+  description = "Add RDS Subnet Group private subnet ap-northeast-1c"
 }
 
 # ストレージの割り当て
@@ -28,6 +32,8 @@ variable "max_allocated_storage" {
 }
 
 variable "security_group_id" {
+  type = list(string)
+  description = "The RDS Security Group ID"
 }
 
 variable "db_instance_class" {
